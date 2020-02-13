@@ -60,22 +60,50 @@ namespace blackjack
             playerCard.Visible = true;
             playerCard.BringToFront();
 
-                sendToOpponent();
+            sendToOpponent();
             
         }
         public void sendToOpponent()
         { // location 380 10
-            animation.Tag = "opponent";
-            
-            animation.Enabled = true;
-            speed = calculateSpeed(true);
+            if (!animation.Enabled)
+            {
+                speed = calculateSpeed(true)/10;
+            }
+
+            if (playerCard.Location.Y >= 10)
+            {
+                animation.Enabled = true;
+            }
+            else
+            {
+                animation.Enabled = false;
+            }
+        }
+        int calculateSpeed(bool isOpponent)
+        {
+            if (isOpponent)
+            {
+                return (opponentPosX / OBEB(playerCard.Location.X, playerCard.Location.Y));
+            }
+            return 0;
         }
 
         int OBEB(int x, int y)
         {
-            if(x > y)
+            if(x >= y)
             {
-                for(int i= y; y != 0;i--)
+                for(int i= y;;i--)
+                {
+                    if (x % i == 0 && y % i == 0)
+                    {
+                        MessageBox.Show(i.ToString());
+                        return i;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = y; y != 0; i--)
                 {
                     if (x % i == 0)
                     {
@@ -84,16 +112,9 @@ namespace blackjack
                     }
                 }
             }
-            return 1;
+            return 0;
         }
-        int calculateSpeed(bool isOpponent)
-        {
-            if (isOpponent)
-            {
-                return OBEB(playerCard.Location.X, playerCard.Location.Y);
-            }
-            return 2;
-        }
+        
         private void playButton_Click(object sender, EventArgs e)
         {
             initGame();
@@ -113,7 +134,7 @@ namespace blackjack
         {
             if(animation.Tag.ToString() == "opponent")
             {
-                playerCard.Location = new Point(playerCard.Location.X-speed,playerCard.Location.Y-speed);
+                playerCard.Location = new Point(playerCard.Location.X-44,playerCard.Location.Y-16);
                 sendToOpponent();
             }
             else if(animation.Tag.ToString() == "opponentX")
