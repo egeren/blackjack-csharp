@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +15,13 @@ namespace blackjack
         bool opponentSent = false;
         byte opponentCount = 0;
         byte playerCount = 0;
-        byte animSpeed = 10;
-        byte ySpeed = 2;
+        int speed = 2;
+        int speedY = 0;
+        double b = 3f;
+        int opponentPosX = 380;
+        int opponentPosY = 10;
+        int playerPosX = 0;
+        int playerPosY = 0;
         PictureBox playerCard;
         public mainForm()
         {
@@ -58,26 +63,36 @@ namespace blackjack
                 sendToOpponent();
             
         }
-        public void getir() { }
         public void sendToOpponent()
         { // location 380 10
             animation.Tag = "opponent";
-            if(playerCard.Location.Y >= 10)
+            
+            animation.Enabled = true;
+            speed = calculateSpeed(true);
+        }
+
+        int OBEB(int x, int y)
+        {
+            if(x > y)
             {
-                animation.Enabled = true;
+                for(int i= y; y != 0;i--)
+                {
+                    if (x % i == 0)
+                    {
+                        MessageBox.Show(i.ToString());
+                        return i;
+                    }
+                }
             }
-            else if(playerCard.Location.X >= 380 + (opponentCount * 2))
+            return 1;
+        }
+        int calculateSpeed(bool isOpponent)
+        {
+            if (isOpponent)
             {
-                animation.Tag = "opponentX";
+                return OBEB(playerCard.Location.X, playerCard.Location.Y);
             }
-            else
-            {
-                animation.Enabled = false;
-                opponentSent = true;
-                opponentCount += 20;
-                playerCount = 0;
-                
-            }
+            return 2;
         }
         private void playButton_Click(object sender, EventArgs e)
         {
@@ -98,12 +113,12 @@ namespace blackjack
         {
             if(animation.Tag.ToString() == "opponent")
             {
-                playerCard.Location = new Point(playerCard.Location.X,playerCard.Location.Y-animSpeed);
+                playerCard.Location = new Point(playerCard.Location.X-speed,playerCard.Location.Y-speed);
                 sendToOpponent();
             }
             else if(animation.Tag.ToString() == "opponentX")
             {
-                playerCard.Location = new Point(playerCard.Location.X-animSpeed, playerCard.Location.Y);
+                //playerCard.Location = new Point(playerCard.Location.X-animSpeed, playerCard.Location.Y);
                 sendToOpponent();
             }
         }
