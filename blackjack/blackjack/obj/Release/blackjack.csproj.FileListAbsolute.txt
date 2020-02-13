@@ -1,0 +1,9 @@
+C:\Users\Ege Eren\source\repos\blackjack\blackjack\bin\Release\blackjack.exe.config
+C:\Users\Ege Eren\source\repos\blackjack\blackjack\bin\Release\blackjack.exe
+C:\Users\Ege Eren\source\repos\blackjack\blackjack\bin\Release\blackjack.pdb
+C:\Users\Ege Eren\source\repos\blackjack\blackjack\obj\Release\blackjack.csprojAssemblyReference.cache
+C:\Users\Ege Eren\source\repos\blackjack\blackjack\obj\Release\blackjack.mainForm.resources
+C:\Users\Ege Eren\source\repos\blackjack\blackjack\obj\Release\blackjack.Properties.Resources.resources
+C:\Users\Ege Eren\source\repos\blackjack\blackjack\obj\Release\blackjack.csproj.GenerateResource.cache
+C:\Users\Ege Eren\source\repos\blackjack\blackjack\obj\Release\blackjack.exe
+C:\Users\Ege Eren\source\repos\blackjack\blackjack\obj\Release\blackjack.pdb
