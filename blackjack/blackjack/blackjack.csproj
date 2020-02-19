@@ -242,5 +242,11 @@
   <ItemGroup>
     <None Include="Resources\cardBack.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stand.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

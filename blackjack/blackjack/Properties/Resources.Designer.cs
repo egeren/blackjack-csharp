@@ -59,16 +59,6 @@ namespace blackjack.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _10Black3 {
-            get {
-                object obj = ResourceManager.GetObject("10Black3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
 
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -81,6 +71,16 @@ namespace blackjack.Properties {
             return ((System.Drawing.Bitmap)(obj));
         }
 
+        internal static System.Drawing.Bitmap _10Black3 {
+            get {
+                object obj = ResourceManager.GetObject("10Black3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _10Black4 {
             get {
                 object obj = ResourceManager.GetObject("10Black4", resourceCulture);
@@ -481,6 +481,16 @@ namespace blackjack.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hit {
+            get {
+                object obj = ResourceManager.GetObject("hit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap jBlack3 {
             get {
                 object obj = ResourceManager.GetObject("jBlack3", resourceCulture);
@@ -594,6 +604,16 @@ namespace blackjack.Properties {
         internal static System.Drawing.Bitmap qRed2 {
             get {
                 object obj = ResourceManager.GetObject("qRed2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stand {
+            get {
+                object obj = ResourceManager.GetObject("stand", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

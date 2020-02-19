@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,14 +13,12 @@ namespace blackjack
 {
     public partial class mainForm : Form
     {
-        bool cardSent = false;
-        bool firstCards;
-        byte sayac = 0;
+
         bool playerTurn = false;
         byte howManyOpponent = 0;
         byte howManyPlayer = 0;
-        byte opponentCount = 0;
-        byte playerCount = 0;
+        byte opponentValue = 0;
+        byte playerValue = 0;
         int speed;
         int speedY;
         double b = 3;
@@ -56,11 +54,10 @@ namespace blackjack
             playerTurn = false;
             howManyOpponent = 0;
             howManyPlayer = 0;
-            opponentCount = 0;
-            playerCount = 0;
+            opponentValue = 0;
+            playerValue = 0;
             timerCheck.Tag = "start";
             timerCheck.Enabled = true;
-            
             sendCard("opponent");
         }
 
@@ -88,7 +85,6 @@ namespace blackjack
         {
             hitButton.Visible = false;
             standButton.Visible = false;
-            cardSent = false;
             createCard(who);
             calculateSpeed(who);
             animation.Tag = who;
@@ -148,8 +144,6 @@ namespace blackjack
             }
             return 0;
         }
-        void deneme() { for (byte i = 0; i < 10; i++) { Console.WriteLine("x"); } }
-        void deneme2() { Console.WriteLine("ege2"); }
         private void playButton_Click(object sender, EventArgs e)
         {
             initGame();
@@ -162,11 +156,6 @@ namespace blackjack
 
         private void button1_Click(object sender, EventArgs e)
         {
-            showCard(true);
-            foreach (PictureBox i in opponentCards)
-            {
-                Console.WriteLine(i.Tag.ToString());
-            }
         }
 
         private void animation_Tick(object sender, EventArgs e)
@@ -175,7 +164,6 @@ namespace blackjack
 
             if (playerCard.Location.X == targetPosX)
             {
-                cardSent = true;
                 animation.Enabled = false;
             }
         }
@@ -191,6 +179,8 @@ namespace blackjack
                 if (howManyPlayer == 2)
                 {
                     timerCheck.Enabled = false;
+                    showCard(true);
+                    calculate();
                     play();
                 }
                 else
@@ -221,14 +211,75 @@ namespace blackjack
                 playerCards[playerCards.Count].BackgroundImage = blackjack.Properties.Resources.getImage(opponentCards[0].Tag.ToString());
             }
         }
+
+        void calculate()
+        {
+            string value;
+            playerValue = 0;
+            opponentValue = 0;
+            foreach (PictureBox i in opponentCards)
+            {
+                
+                value = i.Tag.ToString()[0].ToString();
+                if (value == "j" || value == "q" || value == "k")
+                {
+                    opponentValue += 10;
+                }
+                else if (value == "a")
+                {
+                    if(opponentValue + 11 < 21)
+                    {
+                        opponentValue += 11;
+                    }
+                    else
+                    {
+                        opponentValue += 1;
+                    }
+                }
+                else
+                {
+                    opponentValue += Convert.ToByte(value);
+                }
+                
+            }
+            foreach (PictureBox i in playerCards)
+            {
+                
+                value = i.Tag.ToString()[0].ToString();
+                if (value == "j" || value == "q" || value == "k")
+                {
+                    playerValue += 10;
+                }
+                else if (value == "a")
+                {
+                    if (playerValue + 11 < 21)
+                    {
+                        playerValue += 11;
+                    }
+                    else
+                    {
+                        playerValue += 1;
+                    }
+                }
+                else
+                {
+                    playerValue += Convert.ToByte(value);
+                }
+                MessageBox.Show(playerValue.ToString());
+            }
+            playerLabel.Text = playerValue.ToString();
+        }  // calculates everytime fix this!!
         void play()
         {
             hitButton.Visible = true;
             standButton.Visible = true;
+            hitLabel.Visible = true;
+            standLabel.Visible = true;
+            playerLabel.Visible = true;
         }
         private void hitButton_Click(object sender, EventArgs e)
         {
-
+            sendCard("player");
         }
 
         private void standButton_Click(object sender, EventArgs e)
@@ -236,27 +287,5 @@ namespace blackjack
 
         }
 
-        private void hitButton_MouseEnter(object sender, EventArgs e)
-        {
-            hitLabel.Visible = true;
-        }
-
-        private void hitButton_MouseLeave(object sender, EventArgs e)
-        {
-            hitLabel.Visible = false;
-        }
-
-        private void standButton_MouseEnter(object sender, EventArgs e)
-        {
-            standLabel.Visible = true;
-        }
-
-        private void standButton_MouseLeave(object sender, EventArgs e)
-        {
-            standLabel.Visible = false;
-        }
     }
-    class ege
-        {
-        }
 }
